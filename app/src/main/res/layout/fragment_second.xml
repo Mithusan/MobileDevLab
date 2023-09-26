@@ -51,7 +51,7 @@
         app:layout_constraintVertical_bias="0.395" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/saveNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#bff7ff"
@@ -64,7 +64,7 @@
         app:layout_constraintVertical_bias="0.075" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/returnBtn"
         android:layout_width="43dp"
         android:layout_height="46dp"
         android:backgroundTint="#00000000"
