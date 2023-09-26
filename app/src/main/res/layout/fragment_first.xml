@@ -7,7 +7,7 @@
     tools:context=".FirstFragment">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/header_title"
         android:layout_width="125dp"
         android:layout_height="40dp"
         android:text="My Notes"
@@ -37,7 +37,7 @@
         app:layout_constraintVertical_bias="0.951" />
 
     <android.widget.SearchView
-        android:id="@+id/searchView"
+        android:id="@+id/search_bar"
         android:hint="Search Note ..."
         android:layout_width="378dp"
         android:layout_height="35dp"
@@ -46,11 +46,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.393"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/header_title"
         app:layout_constraintVertical_bias="0.021" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/noNotes_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No notes here."
@@ -58,7 +58,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar"
         app:layout_constraintVertical_bias="0.421" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
