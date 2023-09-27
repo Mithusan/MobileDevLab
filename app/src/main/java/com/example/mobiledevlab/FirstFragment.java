@@ -69,6 +69,9 @@ public class FirstFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentFirstBinding.inflate(getLayoutInflater());
+
+
+
         return binding.getRoot();
     }
 
