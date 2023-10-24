@@ -5,14 +5,16 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
+
 
 import com.example.mobiledevlab.databinding.FragmentFirstBinding;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +24,8 @@ import com.example.mobiledevlab.databinding.FragmentFirstBinding;
 public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
+    DBHandler dbHandler;
+    Adapter adapter;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -62,6 +66,10 @@ public class FirstFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        // creating a new dbhandler class
+        // and passing our context to it.
+        dbHandler = new DBHandler(getActivity());
     }
 
     @Override
@@ -69,6 +77,17 @@ public class FirstFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentFirstBinding.inflate(getLayoutInflater());
+
+        List<Note> notes = dbHandler.getNotes();
+        if(notes.isEmpty()){
+            binding.noNotesHeader.setVisibility(View.VISIBLE);
+        }else{
+            binding.noNotesHeader.setVisibility(View.GONE);
+
+            binding.notesList.setLayoutManager(new LinearLayoutManager(getActivity()));
+            adapter = new Adapter(getActivity(),notes);
+            binding.notesList.setAdapter(adapter);
+        }
 
         return binding.getRoot();
     }

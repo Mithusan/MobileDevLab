@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.mobiledevlab.databinding.FragmentFirstBinding;
 import com.example.mobiledevlab.databinding.FragmentSecondBinding;
@@ -23,6 +24,8 @@ import com.example.mobiledevlab.databinding.FragmentSecondBinding;
 public class SecondFragment extends Fragment {
 
     private FragmentSecondBinding binding;
+    private DBHandler dbHandler;
+    ArrayAdapter<String> adapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,6 +65,10 @@ public class SecondFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        // creating a new dbhandler class
+        // and passing our context to it.
+        dbHandler = new DBHandler(getActivity());
     }
 
     @Override
@@ -74,7 +81,7 @@ public class SecondFragment extends Fragment {
                 "Yellow", "Blue", "Orange"
         };
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arraySpinner);
+        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arraySpinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerColour.setAdapter(adapter);
 
@@ -94,6 +101,21 @@ public class SecondFragment extends Fragment {
         binding.saveNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String noteTitle = binding.inputTitle.getText().toString();
+                String noteDescription = binding.inputDescription.getText().toString();
+                String noteColour = (String) binding.spinnerColour.getSelectedItem();
+
+                if(noteTitle.isEmpty()){
+                    Toast.makeText(getActivity(), "Please enter a Title", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(noteDescription.isEmpty()){
+                    Toast.makeText(getActivity(), "Please enter a Description", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                dbHandler.addNewNote(noteTitle, noteDescription, noteColour);
+
                 NavHostFragment.findNavController(SecondFragment.this).navigate(R.id.action_secondFragment_to_firstFragment);
             }
         });
