@@ -70,8 +70,6 @@ public class FirstFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentFirstBinding.inflate(getLayoutInflater());
 
-
-
         return binding.getRoot();
     }
 

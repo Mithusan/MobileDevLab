@@ -9,6 +9,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.mobiledevlab.databinding.FragmentFirstBinding;
 import com.example.mobiledevlab.databinding.FragmentSecondBinding;
@@ -67,6 +69,15 @@ public class SecondFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentSecondBinding.inflate(getLayoutInflater());
+
+        String[] arraySpinner = new String[] {
+                "Yellow", "Blue", "Orange"
+        };
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arraySpinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.spinnerColour.setAdapter(adapter);
+
         return binding.getRoot();
     }
 
