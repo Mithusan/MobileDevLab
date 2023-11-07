@@ -93,4 +93,35 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         return notes;
     }
+
+    public Note getNote(long id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String[] query = new String[] {Col_ID,Col_Title,col_Description,col_Colour};
+        Cursor cursor=  db.query(DB_Table,query,Col_ID+"=?",new String[]{String.valueOf(id)},null,null,null,null);
+        if(cursor != null)
+            cursor.moveToFirst();
+
+        return new Note(
+                Long.parseLong(cursor.getString(0)),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3));
+    }
+
+    public void editNote(Note note){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues c = new ContentValues();
+        c.put(Col_Title, note.getTitle());
+        c.put(col_Description, note.getDescription());
+        c.put(col_Colour, note.getColour());
+
+        db.update(DB_Table,c,Col_ID+"=?",new String[]{String.valueOf(note.getId())});
+    }
+
+    void deleteNote(long id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(DB_Table,Col_ID+"=?",new String[]{String.valueOf(id)});
+        db.close();
+    }
+
 }
