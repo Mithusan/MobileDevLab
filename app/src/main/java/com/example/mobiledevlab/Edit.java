@@ -52,6 +52,12 @@ public class Edit extends AppCompatActivity {
         noteDescription.setText(note.getDescription());
         spinnerColour.setSelection(position);
 
+        String photo = note.getPhoto();
+
+        if(!photo.isEmpty()){
+
+        }
+
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -5,6 +5,7 @@ public class Note {
     private String title;
     private String description;
     private String colour;
+    private String photo;
 
     Note(long id, String title, String description, String colour){
         this.id = id;
@@ -45,5 +46,13 @@ public class Note {
 
     public String getColour() {
         return colour;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getPhoto() {
+        return photo;
     }
 }

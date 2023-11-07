@@ -23,6 +23,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String Col_Title = "title";
     private static final String col_Description = "description";
     private static final String col_Colour = "colour";
+    private static final String col_Photo = "photo";
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -34,7 +35,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 + Col_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + Col_Title + " TEXT, "
                 + col_Description + " TEXT, "
-                + col_Colour + " TEXT " +
+                + col_Colour + " TEXT, "
+                + col_Photo + " TEXT " +
                 ")";
 
         // at last we are calling a exec sql
@@ -64,6 +66,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(Col_Title, noteTitle);
         values.put(col_Description, noteDescription);
         values.put(col_Colour, noteColour);
+        values.put(col_Photo, "");
 
 
         // after adding all values we are passing
@@ -88,6 +91,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 note.setTitle(cursor.getString(1));
                 note.setDescription(cursor.getString(2));
                 note.setColour(cursor.getString(3));
+                note.setPhoto(cursor.getString(4));
                 notes.add(note);
             }while (cursor.moveToNext());
         }
@@ -114,6 +118,7 @@ public class DBHandler extends SQLiteOpenHelper {
         c.put(Col_Title, note.getTitle());
         c.put(col_Description, note.getDescription());
         c.put(col_Colour, note.getColour());
+        c.put(col_Photo, note.getPhoto());
 
         db.update(DB_Table,c,Col_ID+"=?",new String[]{String.valueOf(note.getId())});
     }

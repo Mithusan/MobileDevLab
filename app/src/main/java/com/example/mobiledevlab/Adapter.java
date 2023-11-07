@@ -57,16 +57,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         TextView titleOutput;
         TextView descriptionOutput;
         ConstraintLayout noteColour;
-        ImageButton editNote;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             titleOutput = itemView.findViewById(R.id.nTitle);
             descriptionOutput = itemView.findViewById(R.id.nDescription);
-            noteColour = itemView.findViewById(R.id.noteContainer);
-            editNote = itemView.findViewById(R.id.editBtn);
+            noteColour = itemView.findViewById(R.id.noteContainer);;
 
-            editNote.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(v.getContext(), Edit.class);
