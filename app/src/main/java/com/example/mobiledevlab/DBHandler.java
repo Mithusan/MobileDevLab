@@ -66,7 +66,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(Col_Title, noteTitle);
         values.put(col_Description, noteDescription);
         values.put(col_Colour, noteColour);
-        values.put(col_Photo, "");
+        values.put(col_Photo, "empty");
 
 
         // after adding all values we are passing
@@ -100,7 +100,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public Note getNote(long id){
         SQLiteDatabase db = this.getWritableDatabase();
-        String[] query = new String[] {Col_ID,Col_Title,col_Description,col_Colour};
+        String[] query = new String[] {Col_ID,Col_Title,col_Description,col_Colour,col_Photo};
         Cursor cursor=  db.query(DB_Table,query,Col_ID+"=?",new String[]{String.valueOf(id)},null,null,null,null);
         if(cursor != null)
             cursor.moveToFirst();
@@ -109,7 +109,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 Long.parseLong(cursor.getString(0)),
                 cursor.getString(1),
                 cursor.getString(2),
-                cursor.getString(3));
+                cursor.getString(3),
+                cursor.getString(4));
     }
 
     public void editNote(Note note){

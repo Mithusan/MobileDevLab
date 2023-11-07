@@ -7,6 +7,13 @@ public class Note {
     private String colour;
     private String photo;
 
+    Note(long id, String title, String description, String colour, String photo){
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.colour = colour;
+        this.photo = photo;
+    }
     Note(long id, String title, String description, String colour){
         this.id = id;
         this.title = title;
@@ -24,6 +31,7 @@ public class Note {
     public long getId(){
         return id;
     }
+
     public void setTitle(String title) {
         this.title = title;
     }
